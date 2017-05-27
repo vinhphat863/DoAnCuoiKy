@@ -15,8 +15,8 @@
 	IncludeViews = true;
     // Read schema
 	var tables = LoadTables();
-
-
+	
+	
 /*
 	// Tweak Schema
 	tables["tablename"].Ignore = true;							// To ignore a table
