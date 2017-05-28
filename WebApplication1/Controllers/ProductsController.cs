@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,6 +16,15 @@ namespace WebApplication1.Controllers
         public ActionResult Index(int Page = 1)
         {
             var DsSanPham = SanPhamBus.PageDanhSach(Page, 8);
+            if (User.Identity.IsAuthenticated)
+            {
+                int SoLuongGioHang = GioHangBus.SoLuong(User.Identity.GetUserId());
+                ViewBag.SoLuong = SoLuongGioHang;
+            }
+            else
+            {
+                ViewBag.SoLuong = 0;
+            }
             return View(DsSanPham);
         }
 
@@ -25,6 +35,15 @@ namespace WebApplication1.Controllers
             var ChiTietSP = SanPhamBus.ChiTiet(id);
             var ChiTietLoaiSP = LoaiBus.ChiTietViewModel(ChiTietSP.MaLoai);
             var ChitTietHangSP = HangBus.ChiTietViewModel(ChiTietSP.MaLoai);
+            if (User.Identity.IsAuthenticated)
+            {
+                int SoLuongGioHang = GioHangBus.SoLuong(User.Identity.GetUserId());
+                ViewBag.SoLuong = SoLuongGioHang;
+            }
+            else
+            {
+                ViewBag.SoLuong = 0;
+            }
             return View(new SanPhamViewModel() {LoaiSP=ChiTietLoaiSP,HangSP=ChitTietHangSP,SanPham=ChiTietSP,BinhLuanSP=BinhLuan });
         }
        

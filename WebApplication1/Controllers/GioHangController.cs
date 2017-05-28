@@ -15,6 +15,7 @@ namespace WebApplication1.Controllers
         public ActionResult Index()
         {
             string MaTaiKhoan = User.Identity.GetUserId();
+            ViewBag.SoLuong = GioHangBus.SoLuong(User.Identity.GetUserId());
             return View(GioHangBus.DanhSach(MaTaiKhoan));
         }
         [HttpPost]
@@ -27,6 +28,12 @@ namespace WebApplication1.Controllers
         public ActionResult CapNhat(int idGioHang,int SoLuong,int MaSanPham)
         {
             GioHangBus.CapNhat(idGioHang,SoLuong,MaSanPham,User.Identity.GetUserId());
+            return RedirectToAction("Index");
+        }
+        [HttpPost]
+        public ActionResult Xoa(int idGioHang,int MaSanPham,string MaTaiKhoan)
+        {
+            GioHangBus.Xoa(idGioHang, MaSanPham, User.Identity.GetUserId());
             return RedirectToAction("Index");
         }
     }

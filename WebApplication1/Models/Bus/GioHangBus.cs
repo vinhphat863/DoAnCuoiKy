@@ -16,6 +16,13 @@ namespace WebApplication1.Models.Bus
                 return db.Query<v_GioHang>("select * from v_GioHang where MaTaiKhoan=@0", MaTaiKhoan);
             }
         }
+        public static int SoLuong(string MaTaiKhoan)
+        {
+            using(var db = new MobileShopConnectionDB())
+            {
+                return db.Query<v_GioHang>("select * from v_GioHang where MaTaiKhoan=@0", MaTaiKhoan).Count();
+            }
+        }
         public static void Them(int MaSanPham,string MaTaiKhoan)
         {
             using(var db =new MobileShopConnectionDB())

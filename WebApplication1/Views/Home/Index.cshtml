@@ -16,8 +16,7 @@
 
             <div class="col-sm-6">
                 <div class="shopping-item">
-                    @*Cho nay da sua*@
-                    <a href="@Url.Action("Cart", "Home")">Cart - - - <span class="cart-amunt">$100</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
+                    <a href="@Url.Action("Index", "GioHang")">Cart<i class="fa fa-shopping-cart"></i><span class="product-count">@ViewBag.SoLuong</span></a>
                 </div>
             </div>
         </div>
@@ -40,7 +39,7 @@
                     <li class="active"><a href="@Url.Action("Index", "Home")">Home</a></li>
                     <li><a href="@Url.Action("Index", "Products")">Shop page</a></li>
                     <li><a href="@Url.Action("Index", "DashBoard",new { Area = "Admin"})">Admin Page</a></li>
-                    <li><a href="@Url.Action("Cart", "Home")">Cart</a></li>
+                    <li><a href="@Url.Action("Index", "GioHang")">Cart</a></li>
                     <li><a href="#">Category</a></li>
                     <li><a href="#">Others</a></li>
                     <li><a href="#">Contact</a></li>

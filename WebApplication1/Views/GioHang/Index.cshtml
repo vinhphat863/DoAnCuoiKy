@@ -3,6 +3,7 @@
     ViewBag.Title = "Cart";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
     bool check = Model.Any();
+    int? TongTien = 0;
 }
 
 <div class="site-branding-area">
@@ -16,7 +17,7 @@
 
             <div class="col-sm-6">
                 <div class="shopping-item">
-                    <a href="@Url.Action("Cart", "Home")">Cart - <span class="cart-amunt">$800</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">5</span></a>
+                    <a href="@Url.Action("Index", "GioHang")">Cart<i class="fa fa-shopping-cart"></i> <span class="product-count">@ViewBag.SoLuong</span></a>
                 </div>
             </div>
         </div>
@@ -137,31 +138,40 @@
                                 <tbody>
                                     @foreach (var item in Model)
                                     {
-                                        using (Html.BeginForm("CapNhat", "GioHang", FormMethod.Post))
-                                        {
-                                            <tr class="cart_item">
-                                                <td class="product-remove">
-                                                    <a title="Remove this item" class="remove" href="#">×</a>
-                                                </td>
+                                        TongTien = TongTien + item.ThanhTien;
+                                        <tr class="cart_item">
+                                            <td class="product-quantity">
+                                                <div class="quantity buttons_added">
+                                                    @using (Html.BeginForm("Xoa", "GioHang", FormMethod.Post))
+                                                    {
+                                                        @Html.Hidden("idGioHang",item.id)
+                                                        @Html.Hidden("MaSanPham",item.MaSanPham)
+                                                        <button type="submit">
+                                                            <i class="fa fa-times" aria-hidden="true"></i>
+                                                        </button>
+                                                    }
+                                                </div>
+                                            </td>
 
-                                                <td class="product-thumbnail">
-                                                    <a href="#"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="~/ShopOnline/img/@item.HinhAnh"></a>
-                                                </td>
+                                            <td class="product-thumbnail">
+                                                <a href="#"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="~/ShopOnline/img/@item.HinhAnh"></a>
+                                            </td>
 
-                                                <td class="product-name">
-                                                    <a href="@Url.Action("Details", "Products", new { id = item.MaSanPham })">@item.TenSP</a>
-                                                </td>
+                                            <td class="product-name">
+                                                <a href="@Url.Action("Details", "Products", new { id = item.MaSanPham })">@item.TenSP</a>
+                                            </td>
 
-                                                <td class="product-price">
-                                                    <span class="amount"><b>@string.Format("{0:N0}", item.ThanhTien) đ</b></span>
-                                                </td>
-
+                                            <td class="product-price">
+                                                <span class="amount"><b>@string.Format("{0:N0}", item.ThanhTien) đ</b></span>
+                                            </td>
+                                            @using (Html.BeginForm("CapNhat", "GioHang", FormMethod.Post))
+                                            {
                                                 <td class="product-quantity">
                                                     <div class="quantity buttons_added">
-                                                        @Html.Hidden("idGioHang",item.id)
+                                                        @Html.Hidden("idGioHang", item.id)
                                                         @Html.Hidden("MaSanPham", item.MaSanPham)
-                                                        <input type="number" name="SoLuong" size="4" class="input-text qty text" value="@item.SoLuong" min="0" step="1">
-                                                        <button type="submit" value="Cập nhật">
+                                                        <input type="number" name="SoLuong" size="4" class="input-text qty text" value="@item.SoLuong" min="0" step="1" required oninvalid="this.setCustomValidity('Vui Lòng Nhập Số Lượng')" oninput="setCustomValidity('')" />
+                                                        <button type="submit">
                                                             <i class="fa fa-repeat" aria-hidden="true"></i>
                                                         </button>
                                                     </div>
@@ -169,13 +179,15 @@
                                                 <td class="product-subtotal">
                                                     <span class="amount"><b>@string.Format("{0:N0}", item.ThanhTien) đ</b></span>
                                                 </td>
-                                            </tr>
-                                        }
+                                            }
+                                        </tr>
 
                                     }
                                     <tr>
-                                        <td class="actions" colspan="6">
-                                            
+                                        <td colspan="5">
+                                            <span><font size="5"><b>Tổng Tiền: @string.Format("{0:N0}", TongTien) đ</b></font></span>
+                                        </td>
+                                        <td class="actions">
                                             <input type="submit" value="Checkout" name="proceed" class="checkout-button button alt wc-forward">
                                         </td>
                                     </tr>
