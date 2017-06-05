@@ -99,6 +99,7 @@ namespace WebApplication1.Areas.Admin.Controllers
 
         // POST: Admin/SanPham/Edit/5
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult Edit(int id, SanPham sp)
         {
             var db = new MobileShopConnectionDB();
