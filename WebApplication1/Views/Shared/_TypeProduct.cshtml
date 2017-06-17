@@ -1,0 +1,7 @@
+﻿@model IEnumerable<MobileShopConnection.LoaiSP>
+<ul class="dropdown-menu">
+    @foreach (var item in Model)
+    {
+        <li><a href="@Url.Action("Type","Products",new { id = item.MaLoai })">@item.TenLoai</a></li>
+    }
+</ul>

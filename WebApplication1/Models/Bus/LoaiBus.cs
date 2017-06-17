@@ -12,7 +12,7 @@ namespace WebApplication1.Models.Bus
         public static IEnumerable<MobileShopConnection.LoaiSP> DanhSach()
         {
             var db = new MobileShopConnectionDB();
-            return db.Query<MobileShopConnection.LoaiSP>("select * from LoaiSP where BiXoa<>1");
+            return db.Query<MobileShopConnection.LoaiSP>("select * from LoaiSP where BiXoa != 1");
         }
         public static Page<LoaiSP> PageDanhSach(int PageNumber, int ItemPerPage)
         {

@@ -420,6 +420,9 @@
     <Content Include="ShopOnline\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="ShopOnline\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Views\GioHang\Index.cshtml" />
+    <Content Include="Views\Shared\_TypeProduct.cshtml" />
+    <Content Include="Views\Products\Type.cshtml" />
+    <Content Include="Views\Products\Producer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

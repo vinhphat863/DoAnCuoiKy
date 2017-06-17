@@ -34,13 +34,23 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                    <li class="active"><a href="@Url.Action("Index", "Home")">Home</a></li>
                     <li><a href="@Url.Action("Index", "Products")">Shop page</a></li>
-                    <li><a href="@Url.Action("Index","GioHang")">Cart</a></li>
-                    <li><a href="#">Checkout</a></li>
-                    <li><a href="#">Category</a></li>
-                    <li><a href="#">Others</a></li>
-                    <li><a href="#">Contact</a></li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (User.IsInRole("Admin"))
+                        {
+                            <li><a href="@Url.Action("Index", "DashBoard",new { Area = "Admin"})">Admin Page</a></li>
+                        }
+                    }
+                    <li><a href="@Url.Action("Index", "GioHang")">Cart</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Category
+                            <span class="caret"></span>
+                        </a>
+                        @Html.Partial("_TypeProduct", WebApplication1.Models.Bus.LoaiBus.DanhSach())
+                    </li>
                 </ul>
             </div>
         </div>
@@ -121,8 +131,8 @@
                 <div class="product-content-right">
                     <div class="product-breadcroumb">
                         <a href="@Url.Action("Index","Products")">Shop Page</a>
-                        <a href="@Url.Action("Index","Products")">@Model.LoaiSP.TenLoai</a>
-                        <a href="@Url.Action("Index","Products")">@Model.HangSP.TenHang</a>
+                        <a href="@Url.Action("Type","Products",new { id = Model.LoaiSP.MaLoai })">@Model.LoaiSP.TenLoai</a>
+                        <a href="@Url.Action("Producer","Products",new { id = Model.HangSP.MaHang })">@Model.HangSP.TenHang</a>
                     </div>
 
                     <div class="row">
@@ -166,13 +176,6 @@
                                         </div>
                                         <div role="tabpanel" class="tab-pane fade" id="profile">
                                             <div class="submit-review">
-                                                
-                                                @*@using (Html.BeginForm("Create", "BinhLuan", FormMethod.Post))
-                                                {
-                                                    @Html.AntiForgeryToken()
-                                                    <p><label for="review">Bình Luận Của Bạn</label> <textarea name="NoiDung" id="" cols="30" rows="10"></textarea></p>
-                                                    <p><input type="submit" value="Submit" onclick="posComment()"></p>
-                                                }*@
                                                 @if(@User.Identity.IsAuthenticated)
                                                 {
                                                     <p><label for="review">Bình Luận Của Bạn</label> <textarea id="NoiDung" cols="30" rows="10"></textarea></p>

@@ -34,7 +34,7 @@ namespace WebApplication1.Controllers
             var BinhLuan = BinhLuanBUS.DanhSach(id);
             var ChiTietSP = SanPhamBus.ChiTiet(id);
             var ChiTietLoaiSP = LoaiBus.ChiTietViewModel(ChiTietSP.MaLoai);
-            var ChitTietHangSP = HangBus.ChiTietViewModel(ChiTietSP.MaLoai);
+            var ChitTietHangSP = HangBus.ChiTietViewModel(ChiTietSP.MaHang);
             if (User.Identity.IsAuthenticated)
             {
                 int SoLuongGioHang = GioHangBus.SoLuong(User.Identity.GetUserId());
@@ -46,6 +46,15 @@ namespace WebApplication1.Controllers
             }
             return View(new SanPhamViewModel() {LoaiSP=ChiTietLoaiSP,HangSP=ChitTietHangSP,SanPham=ChiTietSP,BinhLuanSP=BinhLuan });
         }
-       
+        public ActionResult Type(int id,int Page = 1)
+        {
+            var dsSanPham = SanPhamBus.PageDanhSachTheoLoaiSP(Page, 8, id);
+            return View(dsSanPham);
+        }
+        public ActionResult Producer(int id,int Page = 1)
+        {
+            var dsSanPham = SanPhamBus.PageDanhSachTheoNSX(Page, 8, id);
+            return View(dsSanPham);
+        }
     }
 }

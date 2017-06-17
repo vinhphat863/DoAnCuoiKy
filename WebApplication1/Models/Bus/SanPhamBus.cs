@@ -20,6 +20,17 @@ namespace WebApplication1.Models.Bus
             var db = new MobileShopConnectionDB();
             return db.Page<SanPham>(PageNumber, ItemPerPage, "select * from SanPham where BiXoa = 1");
         }
+        public static Page<SanPham> PageDanhSachTheoLoaiSP(int PageNumber,int ItemPerPage, int id)
+        {
+            var db = new MobileShopConnectionDB();
+            return db.Page<SanPham>(PageNumber, ItemPerPage, "select * from SanPham where MaLoai=@0 and BiXoa != 1",id);
+        }
+
+        public static Page<SanPham> PageDanhSachTheoNSX(int PageNumber,int ItemPerPage, int id)
+        {
+            var db = new MobileShopConnectionDB();
+            return db.Page<SanPham>(PageNumber, ItemPerPage, "select * from SanPham where MaHang=@0 and BiXoa != 1", id);
+        }
 
         public static Page<SanPham> PageDanhSach(int PageNumber, int ItemPerPage)
         {
