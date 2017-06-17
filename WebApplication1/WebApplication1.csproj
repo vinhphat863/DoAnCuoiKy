@@ -423,6 +423,7 @@
     <Content Include="Views\Shared\_TypeProduct.cshtml" />
     <Content Include="Views\Products\Type.cshtml" />
     <Content Include="Views\Products\Producer.cshtml" />
+    <Content Include="Views\Products\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

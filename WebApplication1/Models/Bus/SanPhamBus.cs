@@ -65,5 +65,11 @@ namespace WebApplication1.Models.Bus
             var rs = Sql.Builder.Append("Exec KhoiPhucSanPham @0", id);
             db.Execute(rs);
         }
+
+        public static Page<SanPham> DanhSachTimKiem(int PageNumber, int ItemPerPage, string keyword)
+        {
+            var db = new MobileShopConnectionDB();
+            return db.Page<SanPham>(PageNumber, ItemPerPage, "select * from SanPham where TenSP like @0", keyword);
+        }
     }
 }
