@@ -428,6 +428,7 @@
     <Content Include="Views\Shared\_CheckoutDetail.cshtml" />
     <Content Include="Views\ThanhToan\Index.cshtml" />
     <Content Include="Views\Products\Search.cshtml" />
+    <Content Include="Views\Shared\_FeaturedBrands.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

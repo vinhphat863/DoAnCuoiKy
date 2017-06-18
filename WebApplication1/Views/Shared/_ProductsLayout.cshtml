@@ -101,6 +101,13 @@
                             </a>
                             @Html.Partial("_TypeProduct", WebApplication1.Models.Bus.LoaiBus.DanhSach())
                         </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                Featured Brands
+                                <span class="caret"></span>
+                            </a>
+                            @Html.Partial("_FeaturedBrands", WebApplication1.Models.Bus.HangBus.DanhSach())
+                        </li>
                         <li><a href="@Url.Action("Index","ThanhToan")">CheckOut</a></li>
                     </ul>
                 </div>
