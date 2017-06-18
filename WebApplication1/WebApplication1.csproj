@@ -212,6 +212,7 @@
     <Compile Include="Areas\Admin\Controllers\DashBoardController.cs" />
     <Compile Include="Areas\Admin\Controllers\HangSPController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoaiSPController.cs" />
+    <Compile Include="Areas\Admin\Controllers\QuanLyDonHangController.cs" />
     <Compile Include="Areas\Admin\Controllers\SanPhamController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BinhLuanAPIController.cs" />
@@ -290,6 +291,9 @@
     <Content Include="Areas\Admin\Views\LoaiSP\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\LoaiSP\Deleted.cshtml" />
     <Content Include="Areas\Admin\Views\SanPham\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDonHang\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDonHang\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\QuanLyDonHang\Edit.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -428,6 +432,7 @@
     <Content Include="Views\Shared\_CheckoutDetail.cshtml" />
     <Content Include="Views\ThanhToan\Index.cshtml" />
     <Content Include="Views\Products\Search.cshtml" />
+    <Content Include="Views\Shared\_SameProducer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

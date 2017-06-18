@@ -1,0 +1,15 @@
+﻿@model IEnumerable<MobileShopConnection.SanPham>
+@{
+    Layout = null;
+}
+<h2 class="sidebar-title">Products</h2>
+@foreach (var item in Model)
+{
+    <div class="thubmnail-recent">
+        <img src="~/ShopOnline/img/@item.HinhAnh" class="recent-thumb" alt="">
+        <h2><a href="@Url.Action("Details","Products",new { id = item.MaSP })">@item.TenSP</a></h2>
+        <div class="product-sidebar-price">
+            <ins>@string.Format("{0:N0}",item.GiaBan) đ</ins>
+        </div>
+    </div>
+}

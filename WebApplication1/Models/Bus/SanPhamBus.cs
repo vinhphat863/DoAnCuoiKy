@@ -15,7 +15,11 @@ namespace WebApplication1.Models.Bus
             var db = new MobileShopConnectionDB();
             return db.Query<MobileShopConnection.SanPham>("select * from SanPham where BiXoa != 1");
         }
-
+        public static IEnumerable<SanPham> DanhSachSPCungNhaSanXuat(int MaHang,int MaSP)
+        {
+            var db = new MobileShopConnectionDB();
+            return db.Query<SanPham>("select top 5 * from SanPham where MaHang=@0 and MaSP != @1 and BiXoa != 1",MaHang,MaSP);
+        }
         public static Page<SanPham> PageDanhSachDaXoa(int PageNumber, int ItemPerPage)
         {
             var db = new MobileShopConnectionDB();
