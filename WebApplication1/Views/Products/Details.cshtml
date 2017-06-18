@@ -51,6 +51,13 @@
                         </a>
                         @Html.Partial("_TypeProduct", WebApplication1.Models.Bus.LoaiBus.DanhSach())
                     </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Featured Brands
+                            <span class="caret"></span>
+                        </a>
+                        @Html.Partial("_FeaturedBrands", WebApplication1.Models.Bus.HangBus.DanhSach())
+                    </li>
                     <li><a href="@Url.Action("Index","ThanhToan")">CheckOut</a></li>
                 </ul>
             </div>
@@ -78,53 +85,17 @@
             <div class="col-md-4">
                 <div class="single-sidebar">
                     <h2 class="sidebar-title">Search Products</h2>
-                    <form action="">
-                        <input type="text" placeholder="Search products...">
-                        <input type="submit" value="Search">
-                    </form>
+                    @using (Html.BeginForm("Search", "Products", FormMethod.Get,new { @class = "form-inline"} ))
+                    {
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="keyword" placeholder="Nhập vào từ khóa..."/>
+                            <button type="submit" class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i></button>
+                        </div>
+                    }
                 </div>
 
                 <div class="single-sidebar">
-                    <h2 class="sidebar-title">Products</h2>
-                    <div class="thubmnail-recent">
-                        <img src="~/ShopOnline/img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                        <h2><a href="">Sony Smart TV - 2015</a></h2>
-                        <div class="product-sidebar-price">
-                            <ins>$700.00</ins> <del>$100.00</del>
-                        </div>
-                    </div>
-                    <div class="thubmnail-recent">
-                        <img src="~/ShopOnline/img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                        <h2><a href="">Sony Smart TV - 2015</a></h2>
-                        <div class="product-sidebar-price">
-                            <ins>$700.00</ins> <del>$100.00</del>
-                        </div>
-                    </div>
-                    <div class="thubmnail-recent">
-                        <img src="~/ShopOnline/img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                        <h2><a href="">Sony Smart TV - 2015</a></h2>
-                        <div class="product-sidebar-price">
-                            <ins>$700.00</ins> <del>$100.00</del>
-                        </div>
-                    </div>
-                    <div class="thubmnail-recent">
-                        <img src="~/ShopOnline/img/product-thumb-1.jpg" class="recent-thumb" alt="">
-                        <h2><a href="">Sony Smart TV - 2015</a></h2>
-                        <div class="product-sidebar-price">
-                            <ins>$700.00</ins> <del>$100.00</del>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="single-sidebar">
-                    <h2 class="sidebar-title">Recent Posts</h2>
-                    <ul>
-                        <li><a href="">Sony Smart TV - 2015</a></li>
-                        <li><a href="">Sony Smart TV - 2015</a></li>
-                        <li><a href="">Sony Smart TV - 2015</a></li>
-                        <li><a href="">Sony Smart TV - 2015</a></li>
-                        <li><a href="">Sony Smart TV - 2015</a></li>
-                    </ul>
+                    @Html.Partial("_SameProducer",WebApplication1.Models.Bus.SanPhamBus.DanhSachSPCungNhaSanXuat(Model.HangSP.MaHang,Model.SanPham.MaSP))
                 </div>
             </div>
 
@@ -156,15 +127,20 @@
                                 <div class="product-inner-price">
                                     <ins>@string.Format("{0:N0}", Model.SanPham.GiaBan) đ</ins>
                                 </div>
-                                @using (Html.BeginForm("Them", "GioHang", FormMethod.Post))
+                                @if (Model.SanPham.SoLuong <= 0)
                                 {
-                                    @Html.Hidden("MaSanPham",Model.SanPham.MaSP)
-                                    <button class="add_to_cart_button" type="submit">Add to cart</button>
+                                    <h3 style="color:red">Hết Hàng</h3>
                                 }
-                                <div class="product-inner-category">
-                                    <p>Category: <a href="">Summer</a>. Tags: <a href="">awesome</a>, <a href="">best</a>, <a href="">sale</a>, <a href="">shoes</a>. </p>
-                                </div>
-
+                                else
+                                {
+                                    using (Html.BeginForm("Them", "GioHang", FormMethod.Post))
+                                    {
+                                        @Html.Hidden("MaSanPham", Model.SanPham.MaSP)
+                                        <button class="add_to_cart_button" type="submit">Add to cart</button>
+                                    }
+                                }
+                                <br/>
+                                <br/>
                                 <div role="tabpanel">
                                     <ul class="product-tab" role="tablist">
                                         <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Chi Tiết</a></li>

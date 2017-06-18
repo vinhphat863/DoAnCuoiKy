@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MobileShopConnection.DonHang>
+﻿@model IEnumerable<MobileShopConnection.v_DonHang>
 @{
     ViewBag.Title = "ThanhToan";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
@@ -51,6 +51,13 @@
                             <span class="caret"></span>
                         </a>
                         @Html.Partial("_TypeProduct", WebApplication1.Models.Bus.LoaiBus.DanhSach())
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Featured Brands
+                            <span class="caret"></span>
+                        </a>
+                        @Html.Partial("_FeaturedBrands", WebApplication1.Models.Bus.HangBus.DanhSach())
                     </li>
                 </ul>
             </div>
@@ -139,7 +146,7 @@
                                     <thead>
                                         <tr>
                                             <td colspan="5">
-                                                Đơn Hàng @item.MaDonHang - @item.NgayThanhToan
+                                                <span style="color:red;font-weight:bold;font-size:18px;">Mã Đơn Hàng @item.MaDonHang - @item.NgayThanhToan - @item.TenTinhTrang</span>
                                             </td>
                                         </tr>
                                         <tr>
@@ -159,7 +166,7 @@
                         }
                         else
                         {
-                            <h3>Bạn Chưa Có Sản Phẩm Nào Trong Giỏ Hàng</h3>
+                            <h3>Bạn Chưa Thanh Toán Đơn Hàng Nào Cả !</h3>
                         }
                     </div>
                 </div>

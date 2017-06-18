@@ -15,7 +15,11 @@ namespace WebApplication1.Models.Bus
             var db = new MobileShopConnectionDB();
             return db.Query<MobileShopConnection.SanPham>("select * from SanPham where BiXoa != 1");
         }
-
+        public static IEnumerable<SanPham> DanhSachSPCungNhaSanXuat(int MaHang,int MaSP)
+        {
+            var db = new MobileShopConnectionDB();
+            return db.Query<SanPham>("select top 5 * from SanPham where MaHang=@0 and MaSP != @1 and BiXoa != 1",MaHang,MaSP);
+        }
         public static Page<SanPham> PageDanhSachDaXoa(int PageNumber, int ItemPerPage)
         {
             var db = new MobileShopConnectionDB();
@@ -70,7 +74,7 @@ namespace WebApplication1.Models.Bus
         public static Page<SanPham> DanhSachTimKiem(int PageNumber, int ItemPerPage, string keyword)
         {
             var db = new MobileShopConnectionDB();
-            return db.Page<SanPham>(PageNumber, ItemPerPage, "select * from SanPham where TenSP like '%@0%'", keyword);
+            return db.Page<SanPham>(PageNumber, ItemPerPage, "select * from SanPham where TenSP like @0", "%"+keyword+"%");
         }
     }
 }
