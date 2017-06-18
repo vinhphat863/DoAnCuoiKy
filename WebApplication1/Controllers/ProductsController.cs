@@ -57,7 +57,7 @@ namespace WebApplication1.Controllers
             return View(dsSanPham);
         }
 
-        [HttpPost]
+        [HttpGet]
         public ActionResult Search(string keyword, int Page = 1)
         {
             var DanhSachTimKiem = SanPhamBus.DanhSachTimKiem(Page, 8, keyword);

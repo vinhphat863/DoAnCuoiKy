@@ -85,7 +85,7 @@
             <div class="col-md-4">
                 <div class="single-sidebar">
                     <h2 class="sidebar-title">Search Products</h2>
-                    @using (Html.BeginForm("Search", "Products", FormMethod.Post,new { @class = "form-inline"} ))
+                    @using (Html.BeginForm("Search", "Products", FormMethod.Get,new { @class = "form-inline"} ))
                     {
                         <div class="form-group">
                             <input type="text" class="form-control" name="keyword" placeholder="Nhập vào từ khóa..."/>
