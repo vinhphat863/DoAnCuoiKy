@@ -59,6 +59,7 @@ namespace WebApplication1.Controllers
 
         public ActionResult Search(string keyword, int Page = 1)
         {
+            //keyword = "samsung";
             var DanhSachTimKiem = SanPhamBus.DanhSachTimKiem(Page, 8, keyword);
             return View(DanhSachTimKiem);
         }
