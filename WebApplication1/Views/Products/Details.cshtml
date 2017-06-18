@@ -51,6 +51,13 @@
                         </a>
                         @Html.Partial("_TypeProduct", WebApplication1.Models.Bus.LoaiBus.DanhSach())
                     </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Featured Brands
+                            <span class="caret"></span>
+                        </a>
+                        @Html.Partial("_FeaturedBrands", WebApplication1.Models.Bus.HangBus.DanhSach())
+                    </li>
                     <li><a href="@Url.Action("Index","ThanhToan")">CheckOut</a></li>
                 </ul>
             </div>
@@ -78,10 +85,13 @@
             <div class="col-md-4">
                 <div class="single-sidebar">
                     <h2 class="sidebar-title">Search Products</h2>
-                    <form action="">
-                        <input type="text" placeholder="Search products...">
-                        <input type="submit" value="Search">
-                    </form>
+                    @using (Html.BeginForm("Search", "Products", FormMethod.Post,new { @class = "form-inline"} ))
+                    {
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="keyword"/>
+                            <button type="submit" class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i></button>
+                        </div>
+                    }
                 </div>
 
                 <div class="single-sidebar">
@@ -261,6 +271,7 @@
             const TenTaiKhoan = "@User.Identity.Name";
             $.post("/api/BinhLuanApi", {"MaSanPham":MaSP, "NoiDung":NoiDung}, function(data){
                 $("#comment-box").prepend("<div id=\"comment\"><div class=\"comment-name\">"+TenTaiKhoan+"</div><div class=\"comment-content\">"+NoiDung+"</div></div>");
+                $("#NoiDung").val(""); //reset text form after post comment --Thien.Tran update this--
             });
         }
     </script>
