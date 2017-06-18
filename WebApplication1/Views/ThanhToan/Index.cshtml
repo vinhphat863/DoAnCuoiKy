@@ -1,11 +1,9 @@
-﻿@model IEnumerable<MobileShopConnection.v_GioHang>
+﻿@model IEnumerable<MobileShopConnection.DonHang>
 @{
-    ViewBag.Title = "Cart";
+    ViewBag.Title = "ThanhToan";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
     bool check = Model.Any();
-    double? TongTien = 0;
 }
-
 <div class="site-branding-area">
     <div class="container">
         <div class="row">
@@ -54,7 +52,6 @@
                         </a>
                         @Html.Partial("_TypeProduct", WebApplication1.Models.Bus.LoaiBus.DanhSach())
                     </li>
-                    <li><a href="@Url.Action("Index","ThanhToan")">CheckOut</a></li>
                 </ul>
             </div>
         </div>
@@ -136,79 +133,29 @@
                     <div class="woocommerce">
                         @if (check == true)
                         {
-                            <table cellspacing="0" class="shop_table cart">
-                                <thead>
-                                    <tr>
-                                        <th class="product-remove">Xóa</th>
-                                        <th class="product-thumbnail">&nbsp;</th>
-                                        <th class="product-name">Tên</th>
-                                        <th class="product-price">Giá</th>
-                                        <th class="product-quantity">Số Lượng</th>
-                                        <th class="product-subtotal">Thành Tiền</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var item in Model)
-                                    {
-                                        TongTien = TongTien + item.ThanhTien;
-                                        <tr class="cart_item">
-                                            <td class="product-quantity">
-                                                <div class="quantity buttons_added">
-                                                    @using (Html.BeginForm("Xoa", "GioHang", FormMethod.Post))
-                                                    {
-                                                        @Html.Hidden("idGioHang",item.id)
-                                                        @Html.Hidden("MaSanPham",item.MaSanPham)
-                                                        <button type="submit">
-                                                            <i class="fa fa-times" aria-hidden="true"></i>
-                                                        </button>
-                                                    }
-                                                </div>
+                            foreach (var item in Model)
+                            {
+                                <table cellspacing="0" class="shop_table cart">
+                                    <thead>
+                                        <tr>
+                                            <td colspan="5">
+                                                Đơn Hàng @item.MaDonHang - @item.NgayThanhToan
                                             </td>
-
-                                            <td class="product-thumbnail">
-                                                <a href="#"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="~/ShopOnline/img/@item.HinhAnh"></a>
-                                            </td>
-
-                                            <td class="product-name">
-                                                <a href="@Url.Action("Details", "Products", new { id = item.MaSanPham })">@item.TenSP</a>
-                                            </td>
-
-                                            <td class="product-price">
-                                                <span class="amount"><b>@string.Format("{0:N0}", item.GiaBan) đ</b></span>
-                                            </td>
-                                            @using (Html.BeginForm("CapNhat", "GioHang", FormMethod.Post))
-                                            {
-                                                <td class="product-quantity">
-                                                    <div class="quantity buttons_added">
-                                                        @Html.Hidden("idGioHang", item.id)
-                                                        @Html.Hidden("MaSanPham", item.MaSanPham)
-                                                        <input type="number" name="SoLuong" size="4" class="input-text qty text" value="@item.SoLuong" min="0" step="1" required oninvalid="this.setCustomValidity('Vui Lòng Nhập Số Lượng')" oninput="setCustomValidity('')" />
-                                                        <button type="submit">
-                                                            <i class="fa fa-repeat" aria-hidden="true"></i>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                                <td class="product-subtotal">
-                                                    <span class="amount"><b>@string.Format("{0:N0}", item.ThanhTien) đ</b></span>
-                                                </td>
-                                            }
                                         </tr>
+                                        <tr>
+                                            <th class="product-thumbnail">&nbsp;</th>
+                                            <th class="product-name">Tên</th>
+                                            <th class="product-price">Giá</th>
+                                            <th class="product-quantity">Số Lượng</th>
+                                            <th class="product-subtotal">Thành Tiền</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @Html.Partial("_CheckoutDetail", WebApplication1.Models.Bus.DonHangBUS.LayChiTiet(item.MaDonHang))
+                                    </tbody>
+                                </table>
+                            }
 
-                                    }
-                                    <tr>
-                                        <td colspan="5">
-                                            <span><font size="5"><b>Tổng Tiền: @string.Format("{0:N0}", TongTien) đ</b></font></span>
-                                        </td>
-                                        <td class="actions">
-                                            @using (Html.BeginForm("ThanhToan", "GioHang", FormMethod.Post))
-                                            {
-                                                @Html.Hidden("MaTaiKhoan", User.Identity.Name)
-                                                <input type="submit" value="Checkout" name="proceed" class="checkout-button button alt wc-forward">
-                                            }
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
                         }
                         else
                         {
@@ -316,6 +263,5 @@
 
 <!-- Main Script -->
 <script src="~/ShopOnline/js/main.js"></script>
-
 
 

@@ -13,14 +13,14 @@ namespace WebApplication1.Models.Bus
         {
             using (var db = new MobileShopConnectionDB())
             {
-                return db.Query<v_GioHang>("select * from v_GioHang where MaTaiKhoan=@0", MaTaiKhoan);
+                return db.Query<v_GioHang>("select * from v_GioHang where MaTaiKhoan=@0 and DaThanhToan = 0", MaTaiKhoan);
             }
         }
         public static int SoLuong(string MaTaiKhoan)
         {
             using(var db = new MobileShopConnectionDB())
             {
-                return db.Query<v_GioHang>("select * from v_GioHang where MaTaiKhoan=@0", MaTaiKhoan).Count();
+                return db.Query<v_GioHang>("select * from v_GioHang where MaTaiKhoan=@0 and DaThanhToan = 0", MaTaiKhoan).Count();
             }
         }
         public static void Them(int MaSanPham,string MaTaiKhoan)
@@ -37,7 +37,7 @@ namespace WebApplication1.Models.Bus
             using (var db = new MobileShopConnectionDB()) {
                 if(SoLuong != 0)
                 {
-                    db.Execute("Update GioHang set SoLuong=@0 where MaSanPham=@1 and MaTaiKhoan=@2", SoLuong, MaSanPham, MaTaiKhoan);
+                    db.Execute("Update GioHang set SoLuong=@0 where MaSanPham=@1 and MaTaiKhoan=@2 and DaThanhToan = 0", SoLuong, MaSanPham, MaTaiKhoan);
                 }
                 else
                 {
@@ -56,6 +56,15 @@ namespace WebApplication1.Models.Bus
                     MaTaiKhoan = MaTaiKhoan
                 };
                 db.Delete<GioHang>(gh);
+            }
+        }
+
+        public static void ThanhToan(string MaTaiKhoan)
+        {
+            using(var db = new MobileShopConnectionDB())
+            {
+                var rs = Sql.Builder.Append("Exec ThanhToan @0", MaTaiKhoan);
+                db.Execute(rs);
             }
         }
     }

@@ -26,10 +26,9 @@
 // 
 //     Connection String Name: `MobileShopConnection`
 //     Provider:               `System.Data.SqlClient`
-//     Connection String:      `Data Source=PC;Initial Catalog=ShopDienThoai;Integrated Security=True`
+//     Connection String:      `Data Source=PHAT-PC\SQLEXPRESS;Initial Catalog=ShopDienThoai;Integrated Security=True`
 //     Schema:                 ``
 //     Include Views:          `True`
-
 
 
 using System;
@@ -457,6 +456,66 @@ namespace MobileShopConnection
 
     
 
+	[TableName("dbo.ChiTietDonHang")]
+
+
+
+	[PrimaryKey("MaChiTiet")]
+
+
+
+
+	[ExplicitColumns]
+
+    public partial class ChiTietDonHang : MobileShopConnectionDB.Record<ChiTietDonHang>  
+    {
+
+
+
+		[Column] public int MaChiTiet { get; set; }
+
+
+
+
+
+		[Column] public int? MaDonHang { get; set; }
+
+
+
+
+
+		[Column] public string MaTaiKhoan { get; set; }
+
+
+
+
+
+		[Column] public int? MaSanPham { get; set; }
+
+
+
+
+
+		[Column] public int? SoLuong { get; set; }
+
+
+
+
+
+		[Column] public double? DonGia { get; set; }
+
+
+
+
+
+		[Column] public int? BiXoa { get; set; }
+
+
+
+	}
+
+    
+
 	[TableName("dbo.DonHang")]
 
 
@@ -479,31 +538,19 @@ namespace MobileShopConnection
 
 
 
-		[Column] public int? MaTK { get; set; }
-
-
-
-
-
-		[Column] public int? MaSP { get; set; }
-
-
-
-
-
-		[Column] public int? SoLuong { get; set; }
-
-
-
-
-
-		[Column] public int? GiaTien { get; set; }
+		[Column] public string MaTK { get; set; }
 
 
 
 
 
 		[Column] public int? MaTinhTrang { get; set; }
+
+
+
+
+
+		[Column] public DateTime? NgayThanhToan { get; set; }
 
 
 
@@ -552,6 +599,12 @@ namespace MobileShopConnection
 
 
 		[Column] public int? SoLuong { get; set; }
+
+
+
+
+
+		[Column] public int? DaThanhToan { get; set; }
 
 
 
@@ -683,7 +736,7 @@ namespace MobileShopConnection
 
 
 
-		[Column] public int? GiaBan { get; set; }
+		[Column] public double? GiaBan { get; set; }
 
 
 
@@ -702,6 +755,54 @@ namespace MobileShopConnection
 
 
 		[Column] public string ChiTiet { get; set; }
+
+
+
+	}
+
+    
+
+	[TableName("dbo.sysdiagrams")]
+
+
+
+	[PrimaryKey("diagram_id")]
+
+
+
+
+	[ExplicitColumns]
+
+    public partial class sysdiagram : MobileShopConnectionDB.Record<sysdiagram>  
+    {
+
+
+
+		[Column] public string name { get; set; }
+
+
+
+
+
+		[Column] public int principal_id { get; set; }
+
+
+
+
+
+		[Column] public int diagram_id { get; set; }
+
+
+
+
+
+		[Column] public int? version { get; set; }
+
+
+
+
+
+		[Column] public byte[] definition { get; set; }
 
 
 
@@ -799,6 +900,50 @@ namespace MobileShopConnection
 
     
 
+	[TableName("dbo.v_ChiTietDonHang")]
+
+
+
+
+	[ExplicitColumns]
+
+    public partial class v_ChiTietDonHang : MobileShopConnectionDB.Record<v_ChiTietDonHang>  
+    {
+
+
+
+		[Column] public int? SoLuong { get; set; }
+
+
+
+
+
+		[Column] public string TenSP { get; set; }
+
+
+
+
+
+		[Column] public double? DonGia { get; set; }
+
+
+
+
+
+		[Column] public int? MaDonHang { get; set; }
+
+
+
+
+
+		[Column] public string HinhAnh { get; set; }
+
+
+
+	}
+
+    
+
 	[TableName("dbo.v_GioHang")]
 
 
@@ -854,6 +999,12 @@ namespace MobileShopConnection
 
 
 		[Column] public int? ThanhTien { get; set; }
+
+
+
+
+
+		[Column] public int? DaThanhToan { get; set; }
 
 
 

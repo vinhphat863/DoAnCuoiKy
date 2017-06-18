@@ -36,5 +36,12 @@ namespace WebApplication1.Controllers
             GioHangBus.Xoa(idGioHang, MaSanPham, User.Identity.GetUserId());
             return RedirectToAction("Index");
         }
+        [HttpPost]
+        public ActionResult ThanhToan()
+        {
+            string MaTaiKhoan = User.Identity.GetUserId();
+            GioHangBus.ThanhToan(MaTaiKhoan);
+            return RedirectToAction("Index", "ThanhToan");
+        }
     }
 }

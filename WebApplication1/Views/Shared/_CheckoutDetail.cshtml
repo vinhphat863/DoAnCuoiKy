@@ -1,0 +1,34 @@
+﻿@model IEnumerable<MobileShopConnection.v_ChiTietDonHang>
+@{
+    Layout = null;
+    double? TongTien = 0;
+}
+@foreach (var item in Model)
+{
+    TongTien = TongTien + item.DonGia * item.SoLuong;
+    <tr class="cart_item">
+        <td class="product-thumbnail">
+            <a href="#"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="~/ShopOnline/img/@item.HinhAnh"></a>
+        </td>
+
+        <td class="product-name">
+            @item.TenSP
+        </td>
+
+        <td class="product-price">
+            <span class="amount"><b>@string.Format("{0:N0}", item.DonGia) đ</b></span>
+        </td>
+
+        <td class="product-name">
+            @item.SoLuong
+        </td>
+        <td class="product-subtotal">
+            <span class="amount"><b>@string.Format("{0:N0}", item.DonGia * item.SoLuong) đ</b></span>
+        </td>
+    </tr>
+}
+<tr>
+    <td colspan="5">
+        <span><font size="5"><b>Tổng Tiền: @string.Format("{0:N0}", TongTien) đ</b></font></span>
+    </td>
+</tr>
