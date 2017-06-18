@@ -70,7 +70,7 @@ namespace WebApplication1.Models.Bus
         public static Page<SanPham> DanhSachTimKiem(int PageNumber, int ItemPerPage, string keyword)
         {
             var db = new MobileShopConnectionDB();
-            return db.Page<SanPham>(PageNumber, ItemPerPage, "select * from SanPham where TenSP like '%@0%'", keyword);
+            return db.Page<SanPham>(PageNumber, ItemPerPage, "select * from SanPham where TenSP like @0", "%"+keyword+"%");
         }
     }
 }
