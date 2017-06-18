@@ -295,6 +295,7 @@
             const TenTaiKhoan = "@User.Identity.Name";
             $.post("/api/BinhLuanApi", {"MaSanPham":MaSP, "NoiDung":NoiDung}, function(data){
                 $("#comment-box").prepend("<div id=\"comment\"><div class=\"comment-name\">"+TenTaiKhoan+"</div><div class=\"comment-content\">"+NoiDung+"</div></div>");
+                $("#NoiDung").val(""); //reset text form after post comment --Thien.Tran update this--
             });
         }
     </script>
