@@ -427,6 +427,7 @@
     <Content Include="Views\Products\Producer.cshtml" />
     <Content Include="Views\Shared\_CheckoutDetail.cshtml" />
     <Content Include="Views\ThanhToan\Index.cshtml" />
+    <Content Include="Views\Products\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

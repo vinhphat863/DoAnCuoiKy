@@ -56,5 +56,12 @@ namespace WebApplication1.Controllers
             var dsSanPham = SanPhamBus.PageDanhSachTheoNSX(Page, 8, id);
             return View(dsSanPham);
         }
+
+        public ActionResult Search(string keyword, int Page = 1)
+        {
+            //keyword = "samsung";
+            var DanhSachTimKiem = SanPhamBus.DanhSachTimKiem(Page, 8, keyword);
+            return View(DanhSachTimKiem);
+        }
     }
 }

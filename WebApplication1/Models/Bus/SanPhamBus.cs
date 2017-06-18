@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace WebApplication1.Models.Bus
 {
@@ -64,6 +65,12 @@ namespace WebApplication1.Models.Bus
             var db = new MobileShopConnectionDB();
             var rs = Sql.Builder.Append("Exec KhoiPhucSanPham @0", id);
             db.Execute(rs);
+        }
+
+        public static Page<SanPham> DanhSachTimKiem(int PageNumber, int ItemPerPage, string keyword)
+        {
+            var db = new MobileShopConnectionDB();
+            return db.Page<SanPham>(PageNumber, ItemPerPage, "select * from SanPham where TenSP like '%@0%'", keyword);
         }
     }
 }
