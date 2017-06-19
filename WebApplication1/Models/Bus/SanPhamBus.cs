@@ -76,5 +76,13 @@ namespace WebApplication1.Models.Bus
             var db = new MobileShopConnectionDB();
             return db.Page<SanPham>(PageNumber, ItemPerPage, "select * from SanPham where TenSP like @0", "%"+keyword+"%");
         }
+
+        public static Page<SanPham> DanhSachTimKiemNC(int PageNumber, int ItemPerPage, string tensp, string loaisp, string hangsp, string chitietsp)
+        {
+            var db = new MobileShopConnectionDB();
+            return db.Page<SanPham>(PageNumber, ItemPerPage,
+                "select sp.MaSP, sp.TenSP, sp.MaHang, sp.MaLoai, sp.HinhAnh, sp.TinhTrang, sp.GiaBan, sp.SoLuong, sp.BiXoa, sp.ChiTiet from SanPham sp, LoaiSP l, HangSP h where sp.MaLoai=l.MaLoai and sp.MaHang=h.MaHang and sp.TenSP like @0 and l.TenLoai like @1 and h.TenHang like @2 and sp.ChiTiet like @3",
+                "%" + tensp + "%", "%" + loaisp + "%", "%" + hangsp + "%", "%" + chitietsp + "%");
+        }
     }
 }

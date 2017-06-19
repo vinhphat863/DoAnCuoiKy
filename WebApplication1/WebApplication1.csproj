@@ -450,6 +450,7 @@
     <Content Include="Views\Products\Search.cshtml" />
     <Content Include="Views\Shared\_SameProducer.cshtml" />
     <Content Include="Views\Shared\_FeaturedBrands.cshtml" />
+    <Content Include="Views\Products\SearchNC.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
