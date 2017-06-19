@@ -63,5 +63,12 @@ namespace WebApplication1.Controllers
             var DanhSachTimKiem = SanPhamBus.DanhSachTimKiem(Page, 8, keyword);
             return View(DanhSachTimKiem);
         }
+
+        [HttpGet]
+        public ActionResult SearchNC(string tensp, string loaisp, string hangsp, string chitietsp, int Page = 1)
+        {
+            var DanhSachTimKiemNC = SanPhamBus.DanhSachTimKiemNC(Page, 8, tensp, loaisp, hangsp, chitietsp);
+            return View(DanhSachTimKiemNC);
+        }
     }
 }
