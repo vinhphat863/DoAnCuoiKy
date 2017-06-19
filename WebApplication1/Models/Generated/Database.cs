@@ -173,6 +173,7 @@ namespace MobileShopConnection
 		[Column] public bool LockoutEnabled { get; set; }
 		[Column] public int AccessFailedCount { get; set; }
 		[Column] public string UserName { get; set; }
+		[Column] public bool IsLocked { get; set; }
 	}
     
 	[TableName("dbo.BinhLuan")]

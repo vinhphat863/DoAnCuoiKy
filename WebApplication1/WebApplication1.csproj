@@ -214,6 +214,7 @@
     <Compile Include="Areas\Admin\Controllers\LoaiSPController.cs" />
     <Compile Include="Areas\Admin\Controllers\QuanLyDonHangController.cs" />
     <Compile Include="Areas\Admin\Controllers\SanPhamController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TaiKhoanController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BinhLuanAPIController.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
@@ -224,6 +225,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705010250269_InitialCreate.cs" />
+    <Compile Include="Migrations\201705010250269_InitialCreate.Designer.cs">
+      <DependentUpon>201705010250269_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706181750227_Islocked.cs" />
+    <Compile Include="Migrations\201706181750227_Islocked.Designer.cs">
+      <DependentUpon>201706181750227_Islocked.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Bus\BinhLuanBUS.cs" />
     <Compile Include="Models\Bus\DonHangBUS.cs" />
@@ -232,6 +242,7 @@
     <Compile Include="Models\Bus\CustomDropDownList.cs" />
     <Compile Include="Models\Bus\LoaiBus.cs" />
     <Compile Include="Models\Bus\SanPhamBus.cs" />
+    <Compile Include="Models\Bus\TaiKhoanBus.cs" />
     <Compile Include="Models\Generated\Database.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -294,6 +305,11 @@
     <Content Include="Areas\Admin\Views\QuanLyDonHang\Index.cshtml" />
     <Content Include="Areas\Admin\Views\QuanLyDonHang\Details.cshtml" />
     <Content Include="Areas\Admin\Views\QuanLyDonHang\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\TaiKhoan\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\TaiKhoan\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\TaiKhoan\Deleted.cshtml" />
+    <Content Include="Areas\Admin\Views\TaiKhoan\Restore.cshtml" />
+    <Content Include="Areas\Admin\Views\TaiKhoan\Edit.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -454,6 +470,14 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201705010250269_InitialCreate.resx">
+      <DependentUpon>201705010250269_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706181750227_Islocked.resx">
+      <DependentUpon>201706181750227_Islocked.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
