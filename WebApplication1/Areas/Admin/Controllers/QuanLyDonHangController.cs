@@ -51,13 +51,7 @@ namespace WebApplication1.Areas.Admin.Controllers
         public ActionResult Edit(int id)
         {
             var rs = DonHangBUS.LayThongTinDonHang(id);
-            List<CustomDropDownList> BiXoa = new List<CustomDropDownList>()
-            {
-                new CustomDropDownList {Text="Không Xóa",Value=0 },
-                new CustomDropDownList {Text="Xóa",Value=1 }
-            };
             ViewBag.MaTinhTrang = new SelectList(DonHangBUS.LayDanhSachTinhTrang(), "MaTinhTrang", "TenTinhTrang",rs.MaTinhTrang);
-            ViewBag.BiXoa = new SelectList(BiXoa, "Value", "Text",rs.BiXoa);
             return View(rs);
         }
 
