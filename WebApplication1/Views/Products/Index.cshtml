@@ -16,10 +16,17 @@
                     <ins>@string.Format("{0:N0}",item.GiaBan) đ</ins>
                 </div>
                 <div class="product-option-shop">
-                @using (Html.BeginForm("Them", "GioHang", FormMethod.Post))
+                @if (item.SoLuong <= 0)
                 {
-                    @Html.Hidden("MaSanPham",item.MaSP)
-                    <input type="submit" value="Add To Cart"/>
+                    <input type="submit" value="Sold Out" style="background-color:red"/>
+                }
+                else
+                {
+                    using (Html.BeginForm("Them", "GioHang", FormMethod.Post))
+                    {
+                        @Html.Hidden("MaSanPham", item.MaSP)
+                        <input type="submit" value="Add To Cart"/>
+                    }
                 }
                 </div>
             </div>

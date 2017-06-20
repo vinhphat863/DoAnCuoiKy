@@ -168,11 +168,19 @@
                                 <div class="product-f-image">
                                     <img src="~/ShopOnline/img/@item.HinhAnh" alt="">
                                     <div class="product-hover">
-                                        @using (Html.BeginForm("Them", "GioHang", FormMethod.Post))
+                                        @if (item.SoLuong <= 0)
                                         {
-                                            @Html.Hidden("MaSanPham",item.MaSP)
-                                            <button class="add-to-cart-link" type="submit"><i class="fa fa-shopping-cart"></i> Add to carts</button>
+                                            <button class="add-to-cart-link" type="submit"><i class="fa fa-shopping-cart"></i> Sold Out</button>
                                         }
+                                        else
+                                        {
+                                            using (Html.BeginForm("Them", "GioHang", FormMethod.Post))
+                                            {
+                                                @Html.Hidden("MaSanPham", item.MaSP)
+                                                <button class="add-to-cart-link" type="submit"><i class="fa fa-shopping-cart"></i> Add to carts</button>
+                                            }
+                                        }
+                                        
                                         <a href="@Url.Action("Details", "Products",new { id = @item.MaSP })" class="view-details-link"><i class="fa fa-link"></i> See details</a>
                                     </div>
                                 </div>

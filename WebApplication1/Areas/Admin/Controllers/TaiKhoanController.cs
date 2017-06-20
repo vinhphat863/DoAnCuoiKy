@@ -8,6 +8,7 @@ using WebApplication1.Models.Bus;
 
 namespace WebApplication1.Areas.Admin.Controllers
 {
+    [Authorize(Roles ="Admin")]
     public class TaiKhoanController : Controller
     {
         // GET: Admin/TaiKhoan

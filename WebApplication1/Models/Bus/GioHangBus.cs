@@ -53,7 +53,8 @@ namespace WebApplication1.Models.Bus
                 {
                     id = idGioHang,
                     MaSanPham = MaSanPham,
-                    MaTaiKhoan = MaTaiKhoan
+                    MaTaiKhoan = MaTaiKhoan,
+                    DaThanhToan = 0
                 };
                 db.Delete<GioHang>(gh);
             }
